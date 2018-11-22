@@ -1,0 +1,5 @@
+package com.rodrigogonzaga.biblioteca.controller.page;
+
+public class PageWrapper {
+
+}

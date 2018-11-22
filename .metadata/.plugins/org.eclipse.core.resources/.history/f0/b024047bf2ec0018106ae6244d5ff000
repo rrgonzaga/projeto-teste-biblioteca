@@ -1,0 +1,12 @@
+package com.rodrigogonzaga.biblioteca.repository.helper.livro;
+
+import java.util.List;
+
+import com.rodrigogonzaga.biblioteca.model.Livro;
+import com.rodrigogonzaga.biblioteca.repository.filter.LivroFilter;
+
+public interface LivrosQueries {
+	
+	public List<Livro> filtrar(LivroFilter filtro);
+
+}

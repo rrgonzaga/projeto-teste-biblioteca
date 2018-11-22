@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<HTML xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:th="http://www.thymeleaf.org">
+				
+	<head>
+		<title>Cadastro de livros</title>
+		<meta charset = "UTF8">
+	</head>
+	
+	<body>
+	
+		<form method="post" th:object="${livro}">
+		
+			<!-- <span th:text="|Tem erro no objeto livro: ${#fields.hasAnyErrors()}|"></span> -->
+			
+			<div th:each="erro: ${#fields.detailedErrors()}">
+				<span th:text="${erro.message}"></span>			
+			</div>
+		
+			<p>
+				<span th:text="${mensagem}"></span>
+			<p>			
+				<label for="id-isbn">ISBN: </label>
+				<input type="text" id="id-isbn" name="isbn" th:field="*{isbn}">
+			</p>
+			<p>
+				<label for="id-">Título: </label>
+				<input type="text" id="id-titulo" name="titulo" th:field="*{titulo}">					
+			</p>
+			
+			<p>
+				<label for="id-descricao">Descrição: </label>
+				<textarea id="id-descricao" rows="3" cols="30" name="descricao" th:field="*{descricao}"> 
+				</textarea>					
+			</p>
+			
+			<input type="submit" value="Enviar">			
+			
+		</form>
+	
+		
+	</body>
+
+</HTML>

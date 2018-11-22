@@ -1,0 +1,6 @@
+package com.rodrigogonzaga.biblioteca.repository.filter;
+
+public class LivroFilter {
+	//TODO: Implementar classe quando for fazer a tela de perquisa de livros
+
+}

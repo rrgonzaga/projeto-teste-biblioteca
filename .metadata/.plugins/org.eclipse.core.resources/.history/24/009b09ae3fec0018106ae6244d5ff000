@@ -1,0 +1,37 @@
+package com.rodrigogonzaga.biblioteca.repository.helper.autor;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.Criteria;
+import org.springframework.util.StringUtils;
+
+import com.rodrigogonzaga.biblioteca.model.Autor;
+import com.rodrigogonzaga.biblioteca.repository.filter.AutorFilter;
+
+public class AutoresImpl implements AutoresQueries {
+
+	@Override
+	public List<Autor> filtrar(AutorFilter filtro) {
+		
+		@PersistenceContext
+		private EntityManager manager; 
+		
+		Criteria criteria.;
+		
+		if(filtro != null) {
+			if (StringUtils.isEmpty(filtro.getNome())) {
+				
+			}
+		}
+		
+		
+		
+		
+		
+		return null;
+	}
+
+}

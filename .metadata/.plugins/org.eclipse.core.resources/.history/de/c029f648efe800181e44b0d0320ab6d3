@@ -1,0 +1,25 @@
+<!DOCTYPE xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<HTML>
+	<head>
+		<title>Cadastro de livros</title>
+	</head>
+	
+	<body>
+	
+		<form method="post">
+			<p>
+				<span th:text="${mensagem}"></span>
+			<p>			
+				<label for="id-isbn">ISBN: </label>
+				<input type="text" id="id-isbn" name="isbn">
+			</p>
+			<br>
+			<input type="submit" value="Enviar">			
+			
+		</form>
+	
+		
+	</body>
+
+</HTML>

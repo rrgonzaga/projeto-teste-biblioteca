@@ -1,0 +1,10 @@
+package snippet;
+
+public class Snippet {
+	@Override
+		public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+			this.applicationContext = applicationContext;
+			
+		}
+}
+

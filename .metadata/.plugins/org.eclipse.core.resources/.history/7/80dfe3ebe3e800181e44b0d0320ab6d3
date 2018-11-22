@@ -1,0 +1,13 @@
+package com.rodrigogonzaga.biblioteca.model;
+
+public class Livro {
+	
+	private String isbn;
+	private String titulo; 
+	private String editora; 
+	private String edicao;
+	private String anoPublicacao; 
+	private String breveDescricao; 
+	
+
+}

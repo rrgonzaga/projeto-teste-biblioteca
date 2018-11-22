@@ -1,0 +1,8 @@
+$(function(){
+	var modal = $('#CadastroRapidoAutor-modal');
+	var btnSalvar = modal.find('#btnSalvar-modal'); 
+	
+	alert('oi');
+	
+	
+});

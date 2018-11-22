@@ -1,0 +1,11 @@
+1542595872619	Encapsulate field 'perfilAdministrador'
+1542634997662	Rename resource 'pesquisarAutores.html'
+1542639159342	Rename resource 'PesquisarAutores.html'
+1542650712826	Encapsulate field 'nome'
+1542676059121	Extract method 'adicionarFiltro'
+1542734688349	Delete element
+1542742317585	Encapsulate field 'nomeAutor'
+1542795119416	Encapsulate field 'confirmacaoSenha'
+1542814966525	Delete element
+1542815089234	Delete element
+1542849219982	Delete element

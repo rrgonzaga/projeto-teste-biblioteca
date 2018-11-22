@@ -1,0 +1,5 @@
+package com.rodrigogonzaga.biblioteca.repository.helper.autor;
+
+public interface AutoresQueries {
+
+}

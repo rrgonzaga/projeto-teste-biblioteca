@@ -1,0 +1,59 @@
+$(function(){
+	var modal = $('#CadastroRapidoAutor-modal');
+	var btnSalvar = modal.find('#btnSalvar-modal'); 
+	
+	var form = modal.find('form');
+	form.on('submit', function(event) {event.preventDefault()});
+	
+	var url = form.attr('url');	
+	var inputNomeAutor = $('#id-autor-modal');
+	
+	modal.on('shown.bs.modal', onModalShow); 
+	
+	function onModalShow() {
+		inputNomeAutor.focus(); 
+	}
+	
+	
+	modal.on('hidden.bs.modal', onModalClose); 
+	
+	function onModalClose() {
+		inputNomeAutor.val('');
+	}
+	
+	btnSalvar.on('click', onBtnSalvarClick)
+	
+	function onBtnSalvarClick() {
+		var nomeAutor = inputNomeAutor.val().trim(); 
+		//console.log('nome autor', nomeAutor); 
+		
+		$.ajax({
+			url: url, 
+			method: 'POST', 
+			contentType: 'application/json', 
+			data: JSON.stringify({nome: nomAutor }), 
+			error: onErroSalvandoAutor
+			
+			
+		});
+		
+		function onErroSalvandoAutor() {
+			console.log(arguments);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+});

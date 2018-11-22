@@ -1,0 +1,67 @@
+package com.rodrigogonzaga.biblioteca.model;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class Livro {
+	
+	private long codigo;
+	
+	@NotEmpty
+	private String isbn;
+	
+	private String titulo; 
+	private String editora; 
+	private String edicao;
+	private String anoPublicacao; 
+	private String breveDescricao;
+	
+	public long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+	
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	public String getEditora() {
+		return editora;
+	}
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+	
+	public String getEdicao() {
+		return edicao;
+	}
+	public void setEdicao(String edicao) {
+		this.edicao = edicao;
+	}
+	
+	public String getAnoPublicacao() {
+		return anoPublicacao;
+	}
+	public void setAnoPublicacao(String anoPublicacao) {
+		this.anoPublicacao = anoPublicacao;
+	}
+	
+	public String getBreveDescricao() {
+		return breveDescricao;
+	}
+	public void setBreveDescricao(String breveDescricao) {
+		this.breveDescricao = breveDescricao;
+	}	
+
+}

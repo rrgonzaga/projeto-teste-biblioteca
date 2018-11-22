@@ -1,0 +1,82 @@
+$(function(){
+	var formModal = $('#CadastroRapidoAutor-modal');
+	var btnSalvar = formModal.find('#btnSalvar-modal'); 
+	var btnSelecionar = formModal.find('#btnSelecionar-modal');
+	var comboAutorModal = $('#sel-autor-modal');	
+	var form = formModal.find('form');	
+	var url = form.attr('action');	
+	var inputNomeAutor = $('#id-autor-modal');	
+	var containerMensagemErro = $('#js-mensagem-cadastro-rapido-autores')	 
+	
+	form.on('submit', function(event) {event.preventDefault()});
+	formModal.on('shown.bs.modal', onModalShow);	 
+	btnSelecionar.on('click', onBtnSelecionarClick)
+	btnSalvar.on('click', onBtnSalvarClick)
+	formModal.on('hidden.bs.modal', onModalClose);
+	
+	function onModalShow() {
+		inputNomeAutor.focus(); 
+	}
+	
+	function onBtnSelecionarClick() {	
+		var codigoAutor = $('#codigo-autor');
+		var nomeAutor = $('#nome-autor');
+		
+		console.log('botão selecionar clicado');
+		console.log('comboAutorModal.val()', comboAutorModal.val());
+		
+		if(comboAutorModal.val() == "") {
+			return; 
+		}
+		
+		
+		codigoAutor.text(comboAutorModal.val()); 
+		console.log('comboAutorModal.val()', comboAutorModal.val());
+		
+		nomeAutor.text(comboAutorModal.text());
+		console.log('comboAutorModal.text()', comboAutorModal.text());
+		
+		formModal.modal('hide');	
+	}
+	
+	function onModalClose() {
+		inputNomeAutor.val('');
+		comboAutorModal.val("");
+		form.find('#form-group-input-nome-autor').removeClass('has-error')
+		containerMensagemErro.addClass('hidden');
+	}	
+	
+	function onBtnSalvarClick() {
+		var nomeAutor = inputNomeAutor.val().trim();	 
+		
+		$.ajax({
+			url: url, 
+			method: 'POST', 
+			contentType: 'application/json', 
+			data: JSON.stringify({nome: nomeAutor }), 
+			error: onErroSalvandoAutor, 
+			success: onAutorSalvo
+			
+			
+		});
+		
+		function onErroSalvandoAutor(obj) {			
+			//console.log(arguments);
+			//console.log(obj);
+			var mensagemErro = obj.responseText;
+			containerMensagemErro.removeClass('hidden'); 
+			containerMensagemErro.html('<span>' + mensagemErro + '</span>');
+			form.find('#form-group-input-nome-autor').addClass('has-error');		
+			
+		}
+		
+		function onAutorSalvo(autor) {
+			//console.log(arguments);			
+			comboAutorModal.append('<option value=' + autor.codigo + '>' + autor.nome + '</option>')
+			comboAutorModal.val(autor.codigo);
+		}
+		
+	}
+	
+	
+});

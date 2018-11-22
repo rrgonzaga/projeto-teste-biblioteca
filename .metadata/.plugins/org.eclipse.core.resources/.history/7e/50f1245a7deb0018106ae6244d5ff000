@@ -1,0 +1,63 @@
+$(function(){
+	var modal = $('#CadastroRapidoAutor-modal');
+	var btnSalvar = modal.find('#btnSalvar-modal'); 
+	
+	var form = modal.find('form');
+	form.on('submit', function(event) {event.preventDefault()});
+	
+	var url = form.attr('action');	
+	var inputNomeAutor = $('#id-autor-modal');
+	
+	var containerMensagemErro = $('#js-mensagem-cadastro-rapido-autores')
+	
+	modal.on('shown.bs.modal', onModalShow); 
+	
+	function onModalShow() {
+		inputNomeAutor.focus(); 
+	}
+	
+	modal.on('hidden.bs.modal', onModalClose); 
+	
+	function onModalClose() {
+		inputNomeAutor.val('');
+	}
+	
+	btnSalvar.on('click', onBtnSalvarClick)
+	
+	function onBtnSalvarClick() {
+		var nomeAutor = inputNomeAutor.val().trim(); 
+		console.log('nome autor', nomeAutor); 
+		
+		$.ajax({
+			url: url, 
+			method: 'POST', 
+			contentType: 'application/json', 
+			data: JSON.stringify({nome: nomeAutor }), 
+			error: onErroSalvandoAutor
+			
+			
+		});
+		
+		function onErroSalvandoAutor(obj) {
+			var mensagemErro = obj.responseText;
+			containerMensagemErro.removeClass('hidden'); 
+			containerMensagemErro.html('<span>' + mensagemErro + '</span>');
+			form.find(inputNomeAutor).addClass('has-error');
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+});

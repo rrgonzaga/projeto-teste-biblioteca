@@ -1,0 +1,12 @@
+$(function(){
+	var modal = $('#CadastroRapidoAutor-modal');
+	var btnSalvar = modal.find('#btnSalvar-modal'); 
+	
+	var form = modal.find('form');
+	form.on('submit', function(event) {
+		event.preventDefault()
+	});
+	
+	
+	
+});

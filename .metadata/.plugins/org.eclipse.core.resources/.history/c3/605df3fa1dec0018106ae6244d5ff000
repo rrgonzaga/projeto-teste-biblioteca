@@ -1,0 +1,24 @@
+/*
+********** Utilidades ************
+*/
+.biblio-glyphicon-large {
+	font-size: 18px;
+}
+
+.field-required > .control-label:after {
+	content: "*";
+}
+
+/*
+********** Componentes ************
+*/
+
+/* Field Action */ 
+
+.biblio-field-action {
+	 display: flex;	
+}
+
+.biblio-field-action-icon {	
+	margin: 6px 0 0 5px;	
+}

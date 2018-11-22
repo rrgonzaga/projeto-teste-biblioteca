@@ -1,0 +1,21 @@
+package com.rodrigogonzaga.biblioteca.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.rodrigogonzaga.biblioteca.model.Livro;
+import com.rodrigogonzaga.biblioteca.repository.Livros;
+
+
+@Service
+public class CadastroLivroService {
+	
+	@Autowired
+	private Livros livros; 
+	
+	public void salvar(Livro livro) {
+		livros.save(livro);
+		
+	}
+
+}

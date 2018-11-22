@@ -1,0 +1,66 @@
+package com.rodrigogonzaga.biblioteca.repository.helper.livro;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import com.rodrigogonzaga.biblioteca.model.Autor;
+import com.rodrigogonzaga.biblioteca.model.Livro;
+import com.rodrigogonzaga.biblioteca.repository.filter.AutorFilter;
+import com.rodrigogonzaga.biblioteca.repository.filter.LivroFilter;
+
+public class LivrosImpl implements LivrosQueries {
+	
+	@PersistenceContext
+	private EntityManager manager;
+
+	@SuppressWarnings("unchecked")
+	@Override	
+	@Transactional(readOnly = true)
+	public Page<Livro> filtrar(LivroFilter filtro, Pageable pageable) {
+		
+		Criteria criteria = manager.unwrap(Session.class).createCriteria(Autor.class);
+		
+		//Implementação de paginação no lado do servidor
+		int totalRegistrosPorPagina = pageable.getPageSize();		
+		int paginaAtual = pageable.getPageNumber();
+		int primeiroRegistro = paginaAtual * totalRegistrosPorPagina;
+		
+		criteria.setMaxResults(totalRegistrosPorPagina);
+		criteria.setFirstResult(primeiroRegistro);
+		
+		Sort sort = pageable.getSort();
+		//System.out.println(">>>> sort: " + sort);
+		if(sort != null) {
+			Sort.Order order = sort.iterator().next();
+			String property = order.getProperty();
+			criteria.addOrder(order.isAscending() ? Order.asc(property) : Order.desc(property));
+		}
+		
+		adicionarFiltro(filtro, criteria);
+		
+		
+		return null;
+	}
+	
+	private void adicionarFiltro(AutorFilter filtro, Criteria criteria) {
+		if(filtro != null) {			
+			if (!StringUtils.isEmpty(filtro.getNome())) {				
+				criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE)); 				
+			}
+		}
+	}
+
+	
+
+}

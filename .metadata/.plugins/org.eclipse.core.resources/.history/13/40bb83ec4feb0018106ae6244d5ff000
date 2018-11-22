@@ -1,0 +1,41 @@
+-- Table: public.livro
+-- DROP TABLE public.livro;
+
+CREATE SEQUENCE public.livro_codigo_seq
+    INCREMENT 1
+    START 1;
+
+ALTER SEQUENCE public.livro_codigo_seq
+    OWNER TO root;
+
+CREATE TABLE public.livro
+(
+    codigo integer NOT NULL DEFAULT nextval('livro_codigo_seq'::regclass),
+    isbn character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    titulo character varying(120) COLLATE pg_catalog."default" NOT NULL,
+    codigo_autor integer,
+    editora character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    edicao character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    ano_publicacao character varying(4) COLLATE pg_catalog."default" NOT NULL,
+    descricao character varying(250) COLLATE pg_catalog."default",
+    CONSTRAINT livro_pkey PRIMARY KEY (codigo),
+    CONSTRAINT livro_codigo_autor_fkey FOREIGN KEY (codigo_autor)
+        REFERENCES public.autor (codigo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.livro
+    OWNER to root;
+
+-- Index: autor_fkey
+-- DROP INDEX public.autor_fkey;
+
+CREATE INDEX autor_fkey
+    ON public.livro USING btree
+    (codigo_autor)
+    TABLESPACE pg_default;

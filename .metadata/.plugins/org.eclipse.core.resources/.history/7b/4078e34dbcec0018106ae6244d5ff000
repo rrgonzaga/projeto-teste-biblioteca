@@ -1,0 +1,22 @@
+package com.rodrigogonzaga.biblioteca.controller.page;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
+public class PageWrapper<T> {
+	
+	private Page<T> page;
+
+	public PageWrapper(Page<T> page) {
+		this.page = page;
+	}
+		
+	public List<T> getContent() {
+		return page.getContent();
+	}
+	
+	public boolean isEmpty() {
+		return page.getContent().isEmpty();
+	}
+}

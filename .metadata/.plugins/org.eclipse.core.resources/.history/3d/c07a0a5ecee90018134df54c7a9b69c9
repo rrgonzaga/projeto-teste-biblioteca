@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      	layout:decorate="~{layout/LayoutPadrao}">
+      	
+<head></head>
+	
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de livro
+				</h1>
+			</div>
+		</div>
+	
+		<div class="container-fluid">				
+		
+			<form method="post" th:object="${livro}" class="form-vertical  js-form-loading">	
+				
+				<div th:replace="fragments/MensagensErroValidacao :: mensagensErro"></div>
+				<div th:replace="fragments/MensagemSucesso :: mensagemSucesso"></div>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="id-isbn" class="control-label">ISBN </label>
+							<input type="text" id="id-isbn" class="form-control" th:field="*{isbn}"  placeholder="Ex.: 978-85-204-3997-5">
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label for="id-titulo" class="control-label">Título </label>
+							<input type="text" id="id-titulo" class="form-control" th:field="*{titulo}" placeholder="">								
+						</div>						
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="id-anoPublicacao" class="control-label">Ano de Publicação </label>
+							<input type="text" id="id-anoPublicacao" class="form-control" th:field="*{anoPublicacao}"  placeholder="Ex.:  2000">
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label for="id-autor" class="control-label">Autor(a)</label>
+							<div class="biblio-field-action">
+								<input type="text" id="id-autor" class="form-control" readonly="readonly" placeholder="">
+								<div class="biblio-field-action-icon">
+									<a href="#" data-toggle="modal" data-target="#CadastroRapidoAutor-modal">
+										<i class="glyphicon glyphicon-search biblio-glyphicon-large"></i>
+									</a>
+								</div>
+								
+							</div>															
+						</div>						
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="id-edicao" class="control-label">Edição </label>
+							<input type="text" id="id-edicao" class="form-control" th:field="*{edicao}"  placeholder="">
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label for="id-editora" class="control-label">Editora</label>
+							<input type="text" id="id-editora" class="form-control" th:field="*{editora}" placeholder="">								
+						</div>						
+					</div>
+				</div>
+									
+				<div class="form-group"> 
+					<label for="id-descricao" class="control-label">Descrição </label>
+					<textarea id="id-descricao" rows="3" class="form-control" th:field="*{descricao}"> 
+					</textarea>							
+				</div>					
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+					<a href="" class="btn  btn-default" onclick="limparCampos()">Cancelar</a>
+					&nbsp;<span th:text="|Tem erro no objeto livro: ${#fields.hasAnyErrors()}|"></span>						
+				</div>
+			</form>
+		</div>
+		
+		<!-- Início Modal Cadastro Rápido Autor -->
+		<div th:replace="autor/CadastroRapidoAutor :: CadastroRapidoAutor-modal"></div>
+		<!-- Fim Modal Cadastro Rápido Autor -->
+		
+		<script>
+			function limparCampos() {
+				$('.form-control').val('');
+				$('#id-isbn').focus();
+			}
+		
+		</script>
+					
+	</section>
+	
+</body>
+
+</HTML>

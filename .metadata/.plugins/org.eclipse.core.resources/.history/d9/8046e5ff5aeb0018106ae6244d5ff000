@@ -1,0 +1,21 @@
+package com.rodrigogonzaga.biblioteca.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rodrigogonzaga.biblioteca.model.Autor;
+import com.rodrigogonzaga.biblioteca.repository.Autores;
+
+@Service
+public class CadastroAutorService {
+	
+	@Autowired
+	private Autores autores; 
+	
+	@Transactional
+	public void salvar(Autor autor) {
+		autores.save(autor);		
+	}
+
+}

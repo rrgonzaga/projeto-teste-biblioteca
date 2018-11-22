@@ -1,0 +1,81 @@
+package com.rodrigogonzaga.biblioteca.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+public class Usuario {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long codigo; 
+	
+	@Size(min=2, max=80, message="O nome do usuário é obrigatório e deve ter entre 2 e 80 caracteres")
+	private String nome;
+	
+	@NotBlank(message="O e-mail é obrigatório")
+	private String email;
+	
+	@NotBlank(message = "A senha é obrigatória")
+	private String senha;
+	
+	private LocalDate dataNascimento;
+	
+	private boolean ativo;
+
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome.trim();
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	} 
+	
+	
+
+}

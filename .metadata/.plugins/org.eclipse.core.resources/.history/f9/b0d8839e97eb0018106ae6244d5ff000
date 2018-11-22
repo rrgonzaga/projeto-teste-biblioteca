@@ -1,0 +1,152 @@
+package com.rodrigogonzaga.biblioteca.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.rodrigogonzaga.biblioteca.validation.ISBN;
+
+@Entity
+@Table(name="livro")
+public class Livro implements Serializable {
+		
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long codigo;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codigo ^ (codigo >>> 32));
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (codigo != other.codigo)
+			return false;
+		return true;
+	}
+	
+	@ISBN
+	@NotBlank(message="O código ISBN do livro é obrigatório")
+	private String isbn;	
+		
+	@Size(min=2, max=120, message="O título do livro é obrigatório e deve ter entre 2 e 120 caracteres")
+	private String titulo; 
+	
+	@NotBlank(message="O nome da editora do livro é obrigatório")
+	@Size(max=50, message="O nome da editora do livro ter no máximo 50 caracteres")
+	private String editora;
+	
+	@NotBlank(message="A edição do livro é obrigatório")	
+	@Size(max=50, message="A edição do livro ter no máximo 50 caracteres")
+	private String edicao;
+	
+	@NotBlank(message="O ano da publicação do livro é obrigatório")
+	@Pattern(regexp="(\\d{4})?", message="O ano da publicação deve ter 4 dígitos.")
+	@Column(name = "ano_publicacao")
+	private String anoPublicacao;
+		
+	@Size(max=250, message="A descrição do livro deve ter no máximo 250 caracteres")
+	private String descricao;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_autor")
+	@NotNull(message="O autor do livro é obrigatório")
+	private Autor autor;	
+	
+	
+	@PrePersist @PreUpdate 
+	private void prePersistUpdate() {
+		//titulo = titulo.toUpperCase();
+		titulo = (titulo != null) ? titulo.trim() : null;
+		descricao = (descricao != null) ? descricao.trim() : null;
+		edicao = (edicao != null) ? edicao.trim() : null;
+		editora = (editora != null) ? editora.trim() : null;
+	}
+	
+	
+	
+	public long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+	
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	public String getEditora() {
+		return editora;
+	}
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+	
+	public String getEdicao() {
+		return edicao;
+	}
+	public void setEdicao(String edicao) {
+		this.edicao = edicao;
+	}
+	
+	public String getAnoPublicacao() {
+		return anoPublicacao;
+	}
+	public void setAnoPublicacao(String anoPublicacao) {
+		this.anoPublicacao = anoPublicacao;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public Autor getAutor() {
+		return autor;
+	}
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+	
+	
+
+}

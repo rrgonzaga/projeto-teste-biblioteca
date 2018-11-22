@@ -1,0 +1,5 @@
+package com.rodrigogonzaga.biblioteca.config.init;
+
+public class SecurityInitializer {
+
+}

@@ -1,0 +1,52 @@
+package com.rodrigogonzaga.biblioteca.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.rodrigogonzaga.biblioteca.model.Autor;
+import com.rodrigogonzaga.biblioteca.service.CadastroAutorService;
+import com.rodrigogonzaga.biblioteca.service.exception.NomeAutorJaCadastradoException;
+
+@Controller
+public class AutoresController {
+	
+	@Autowired
+	private CadastroAutorService cadastroAutorService; 
+	
+	@RequestMapping(value = "/autores/novo", method=RequestMethod.GET)	
+	public ModelAndView novo(Autor autor) {
+		ModelAndView mv = new ModelAndView("autor/CadastroAutor"); 
+		return mv;
+	}
+	
+	@RequestMapping(value = "/autores/novo", method=RequestMethod.POST)
+	public ModelAndView cadastrar(@Valid Autor autor, BindingResult result, Model model, RedirectAttributes attributes) {
+		
+		if (result.hasErrors()) {
+			return novo(autor);
+		}	
+		
+		try {
+			
+			cadastroAutorService.salvar(autor);
+			
+		} catch (NomeAutorJaCadastradoException ex) {
+			result.rejectValue("nome", ex.getMessage(), ex.getMessage());
+			
+		}
+		
+		
+		
+		attributes.addFlashAttribute("mensagem", "Autor(a) cadastrado com sucesso");
+		
+		return new ModelAndView("redirect:/autores/novo");
+	}
+}

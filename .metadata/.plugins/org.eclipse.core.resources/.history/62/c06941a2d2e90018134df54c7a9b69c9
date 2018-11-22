@@ -1,0 +1,5 @@
+package com.rodrigogonzaga.biblioteca.model;
+
+public class Autor {
+
+}

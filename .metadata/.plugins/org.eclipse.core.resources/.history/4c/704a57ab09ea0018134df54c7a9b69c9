@@ -1,0 +1,120 @@
+package com.rodrigogonzaga.biblioteca.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name="livro")
+public class Livro {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long codigo;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codigo ^ (codigo >>> 32));
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (codigo != other.codigo)
+			return false;
+		return true;
+	}
+	@NotBlank(message="O código ISBN do livro é obrigatório")
+	private String isbn;
+	
+	@NotBlank(message="O título do livro é obrigatório")
+	@Size(min=2, max=80, message="O tamanho do título do livro deve estar entre 2 e 80 caracteres")
+	private String titulo; 
+	
+	@NotBlank(message="O nome da editora do livro é obrigatório")
+	private String editora;
+	
+	@NotBlank(message="O ano da edição do livro é obrigatório")
+	private String edicao;
+	
+	@NotBlank(message="O ano de publicação do livro é obrigatório")
+	@Column(name = "ano_publicacao")
+	private String anoPublicacao;
+	
+	//TODO Saber como validar a anotação @Size sem obrigar o preenchimento da descrição, ou seja, só validar quando for informado algum conteúdo
+	private String descricao;
+	
+	private Autor autor;	
+	
+	
+	public long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+	
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	public String getEditora() {
+		return editora;
+	}
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+	
+	public String getEdicao() {
+		return edicao;
+	}
+	public void setEdicao(String edicao) {
+		this.edicao = edicao;
+	}
+	
+	public String getAnoPublicacao() {
+		return anoPublicacao;
+	}
+	public void setAnoPublicacao(String anoPublicacao) {
+		this.anoPublicacao = anoPublicacao;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public Autor getAutor() {
+		return autor;
+	}
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}	
+
+}

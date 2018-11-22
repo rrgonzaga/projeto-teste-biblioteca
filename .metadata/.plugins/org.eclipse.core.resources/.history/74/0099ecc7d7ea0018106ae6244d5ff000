@@ -1,0 +1,17 @@
+package com.rodrigogonzaga.biblioteca.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.rodrigogonzaga.biblioteca.model.Livro;
+
+@Repository
+public interface Livros extends JpaRepository<Livro, Long> {
+	
+	//public Optional<Livro> findByIsbn(String isbn);
+	//public Optional<Livro> findByTituloIgnoreCaseAndTituloContaining(String titulo);
+	
+	
+}

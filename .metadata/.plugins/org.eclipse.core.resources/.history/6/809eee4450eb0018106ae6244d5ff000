@@ -1,0 +1,28 @@
+-- Table: public.autor
+
+-- DROP TABLE public.autor;
+
+CREATE SEQUENCE public.autor_codigo_seq
+    INCREMENT 1
+    START 1;
+
+ALTER SEQUENCE public.autor_codigo_seq
+    OWNER TO root;
+
+
+CREATE TABLE public.autor
+(
+    codigo integer NOT NULL DEFAULT nextval('autor_codigo_seq'::regclass),
+    nome character varying(120) COLLATE pg_catalog."default" NOT NULL,
+    descricao character varying(250) COLLATE pg_catalog."default",
+    CONSTRAINT autor_pkey PRIMARY KEY (codigo)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.autor
+    OWNER to root;
+    
+

@@ -1,0 +1,11 @@
+<!DOCTYPE>
+<HTML>
+	<head>
+		<title>Olá</title>
+	</head>
+	
+	<body>
+		<h1>Olá! Thymeleaf configurado!</h1>
+	</body>
+
+</HTML>

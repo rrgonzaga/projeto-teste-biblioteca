@@ -1,0 +1,84 @@
+$(function(){
+	var formModal = $('#CadastroRapidoAutor-modal');
+	var btnSalvar = formModal.find('#btnSalvar-modal'); 
+	
+	var form = formModal.find('form');
+	form.on('submit', function(event) {event.preventDefault()});
+	
+	var url = form.attr('action');	
+	var inputNomeAutor = $('#id-autor-modal');
+	
+	var containerMensagemErro = $('#js-mensagem-cadastro-rapido-autores')
+	
+	formModal.on('shown.bs.modal', onModalShow); 
+	
+	function onModalShow() {
+		inputNomeAutor.focus(); 
+	}
+	
+	formModal.on('hidden.bs.modal', onModalClose); 
+	
+	function onModalClose() {
+		inputNomeAutor.val('');
+		form.find('#form-group-input-nome-autor').removeClass('has-error')
+		containerMensagemErro.addClass('hidden');
+	}
+	
+	btnSalvar.on('click', onBtnSalvarClick)
+	
+	function onBtnSalvarClick() {
+		var nomeAutor = inputNomeAutor.val().trim();	 
+		
+		$.ajax({
+			url: url, 
+			method: 'POST', 
+			contentType: 'application/json', 
+			data: JSON.stringify({nome: nomeAutor }), 
+			error: onErroSalvandoAutor, 
+			success: onAutorSalvo
+			
+			
+		});
+		
+		function onErroSalvandoAutor(obj) {			
+			//console.log(arguments);
+			//console.log(obj);
+			var mensagemErro = obj.responseText;
+			containerMensagemErro.removeClass('hidden'); 
+			containerMensagemErro.html('<span>' + mensagemErro + '</span>');
+			form.find('#form-group-input-nome-autor').addClass('has-error');		
+			
+		}
+		
+		function onAutorSalvo(autor) {
+			//console.log(arguments); 
+			var codigoAutor = $('#codigo-autor');
+			var nomeAutor = $('#nome-autor');
+			
+			codigoAutor.val(autor.codigo); 
+			nomeAutor.val(autor.nome);
+			
+			formModal.modal('hide');
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+});

@@ -1,0 +1,47 @@
+package com.rodrigogonzaga.biblioteca.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.rodrigogonzaga.biblioteca.model.Livro;
+import com.rodrigogonzaga.biblioteca.repository.Livros;
+
+@Controller
+public class LivrosController {
+	
+	@Autowired
+	private Livros livros; 
+	
+	
+	@RequestMapping(value = "/livros/novo", method=RequestMethod.GET)	
+	public String novo(Livro livro) {
+		livros.findAll();// TODO apagar está linha de código. apenas teste. 
+		return "livro/CadastroLivro";
+	}
+	
+	@RequestMapping(value = "/livros/novo", method=RequestMethod.POST)
+	public String cadastrar(@Valid Livro livro, BindingResult result, Model model, RedirectAttributes attributes) {
+		
+		if (result.hasErrors()) {
+			return novo(livro);
+		}	
+		
+		attributes.addFlashAttribute("mensagem", "Parabéns! Objeto livro sem erro de vaidação");
+		
+		return "redirect:/livros/novo";
+	}
+	
+	@RequestMapping("/livros/cadastro")
+	public String cadastroProduto() {
+		return "livro/cadastro-produto";
+		
+	}
+
+}

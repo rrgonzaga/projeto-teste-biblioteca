@@ -1,0 +1,20 @@
+package com.rodrigogonzaga.biblioteca.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.rodrigogonzaga.biblioteca.model.Autor;
+
+@Controller
+public class AutoresController {
+	
+	@RequestMapping(value = "/autores/novo", method=RequestMethod.GET)	
+	public String novo(Autor autor) {
+		return "autor/CadastroAutor";
+		
+		
+	}
+	
+	
+}

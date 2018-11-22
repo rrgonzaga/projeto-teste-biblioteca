@@ -1,0 +1,5 @@
+package com.rodrigogonzaga.biblioteca.config;
+
+public class ServiceConfig {
+
+}

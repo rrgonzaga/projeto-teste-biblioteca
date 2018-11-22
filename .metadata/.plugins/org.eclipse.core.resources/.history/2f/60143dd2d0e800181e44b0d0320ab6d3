@@ -1,0 +1,12 @@
+package com.rodrigogonzaga.biblioteca.controller;
+
+import org.springframework.stereotype.Controller;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+
+@Controller
+public class LivrosController {
+	
+
+}

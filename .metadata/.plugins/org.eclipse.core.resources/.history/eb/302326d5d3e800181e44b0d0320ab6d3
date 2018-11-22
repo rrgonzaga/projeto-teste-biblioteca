@@ -1,0 +1,9 @@
+package com.rodrigogonzaga.biblioteca.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class LivrosController {
+	
+
+}

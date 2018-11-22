@@ -1,0 +1,39 @@
+package com.rodrigogonzaga.biblioteca.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rodrigogonzaga.biblioteca.model.Livro;
+import com.rodrigogonzaga.biblioteca.repository.Livros;
+import com.rodrigogonzaga.biblioteca.service.exception.IsbnLivroJaCadastradoException;
+import com.rodrigogonzaga.biblioteca.service.exception.TituloLivroJaCadastradoException;
+
+
+@Service
+public class CadastroLivroService {
+	
+	@Autowired
+	private Livros livros; 
+	
+	@Transactional
+	public void salvar(Livro livro) {
+		
+		Optional<Livro> tituloOptional = livros.findByTituloIgnoreCase(livro.getTitulo());
+		
+		if(tituloOptional.isPresent()) {
+			throw new TituloLivroJaCadastradoException("Título do livro já cadastrado");  
+		}
+		
+		Optional<Livro> isbnOptional = livros.findByIsbn(livro.getIsbn());
+		
+		if(isbnOptional.isPresent()) {
+			throw new IsbnLivroJaCadastradoException("Código ISBN do livro já cadastrado");
+		}
+				
+		livros.save(livro);		
+	}
+
+}

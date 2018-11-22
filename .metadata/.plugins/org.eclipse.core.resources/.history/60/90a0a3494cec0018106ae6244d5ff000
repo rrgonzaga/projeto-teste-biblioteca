@@ -1,0 +1,13 @@
+package com.rodrigogonzaga.biblioteca.repository.helper.autor;
+
+import java.util.List;
+
+import com.rodrigogonzaga.biblioteca.model.Autor;
+import com.rodrigogonzaga.biblioteca.repository.filter.AutorFilter;
+
+
+public interface AutoresQueries {
+	
+	public List<Autor> filtrar(AutorFilter filtro);
+
+}

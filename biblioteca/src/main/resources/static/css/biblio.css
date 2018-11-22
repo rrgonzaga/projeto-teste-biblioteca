@@ -1,0 +1,65 @@
+/*
+********** Utilidades ************
+*/
+.biblio-glyphicon-large {
+	font-size: 18px;
+}
+
+.field-required > .control-label:after {
+	content: "*";
+}
+
+/*
+********** Componentes ************
+*/
+
+/* Field Action */ 
+
+.biblio-field-action {
+	 display: flex;	
+}
+
+.biblio-field-action-icon {	
+	margin: 6px 0 0 5px;	
+}
+
+/* 
+********** Tabela Simples **********
+*/
+.biblio-tabela-simples {
+	margin-top: 15px;
+}
+
+.biblio-tabela-simples table tr th {
+	border-bottom-width: 1px;
+}
+
+.biblio-tabela-simples table tr td {
+    border-top: none;
+    border-bottom: 1px solid #e7eaec;
+    padding: 10px;
+    vertical-align: middle;
+    height: 57px;
+    max-height: 57px;
+}
+
+
+
+/*
+********** Colunas tabela pesquisa de cervejas ********** 
+*/
+
+.biblio-autores-col-nome {
+	width: 200px;
+		 
+}
+
+.biblio-autores-col-descricao {	
+	max-width:720px;
+}
+
+.biblio-autores-col-acoes {
+	width: 80px;
+}
+
+

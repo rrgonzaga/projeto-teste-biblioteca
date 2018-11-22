@@ -1,0 +1,22 @@
+package com.rodrigogonzaga.biblioteca.controller.handler;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.rodrigogonzaga.biblioteca.service.exception.NomeAutorJaCadastradoException;
+import com.rodrigogonzaga.biblioteca.service.exception.TituloLivroJaCadastradoException;
+
+@ControllerAdvice
+public class ControllerAdviceExceptionHandler {
+	
+	@ExceptionHandler(NomeAutorJaCadastradoException.class)
+	public ResponseEntity<String> handleNomeAutorJaCadastradoException(NomeAutorJaCadastradoException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());		
+	}
+	
+	public ResponseEntity<String> handleTituloLivroJaCadastradoException(TituloLivroJaCadastradoException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+
+}

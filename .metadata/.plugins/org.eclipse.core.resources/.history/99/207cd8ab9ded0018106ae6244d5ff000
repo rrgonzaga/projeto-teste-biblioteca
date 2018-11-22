@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      	layout:decorate="~{layout/LayoutPadrao}"
+      	xmlns:biblioteca="http://biblioteca.rodrigogonzaga.com">
+      	
+<head>
+	<title>Cadastro de usuário</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors/bootstrap-switch.min.css}"/>
+</head>
+	
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Usuário
+				</h1>
+			</div>
+		</div>
+	
+		<div class="container-fluid">				
+		
+			<form method="post" th:object="${usuario}" class="form-vertical  js-form-loading">	
+				<div id="mensagens">
+					<div th:replace="fragments/MensagensErroValidacao :: mensagensErro"></div>
+					<div th:replace="fragments/MensagemSucesso :: mensagemSucesso"></div>
+				</div>			
+				<div class="row">
+					<div class="form-group col-sm-12 field-required" biblioteca:classforerror="nome">
+						<label for="id-nome" class="control-label">Nome</label>
+						<input type="text" id="id-nome" class="form-control" th:field="*{nome}" autofocus="autofocus">					
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-11 form-group field-required" biblioteca:classforerror="email">													
+						<label for="id-email" class="control-label">E-mail</label>							
+						<input id="id-email" type="text" class="form-control" th:field="*{email}"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-3 col-sm-4 form-group field-required" biblioteca:classforerror="senha">													
+						<label for="id-senha" class="control-label">Senha</label>							
+						<input id="id-senha" type="password" class="form-control" th:field="*{senha}"/>
+					</div>
+					
+					<div class="col-lg-3 col-sm-4 form-group field-required" biblioteca:classforerror="confirmacaoSenha">													
+						<label for="id-confirSenha" class="control-label">Confirmação de Senha</label>							
+						<input id="id-confirSenha" type="password" class="form-control" th:field="*{confirmacaoSenha}"/>
+					</div>	
+					
+					<div class="col-lg-3 col-sm-2 form-group">
+						<label class="control-label"> Perfil administrador</label>
+						<div>    						
+   							<input type="checkbox" id="perfilAdm" class="js-status" data-size="mini" 
+   							data-off-color="danger" data-on-text="Sim" data-off-text="Não" th:field="*{perfilAdministrador}"/>   							
+  						</div>
+  					</div>	
+  					
+  					<div class="col-lg-3 col-sm-2 form-group">
+						<label class="control-label">Status</label>
+						<div>    						
+   							<input type="checkbox" id="ativo" class="js-status" data-size="mini" 
+   							data-off-color="danger" data-on-text="Ativo" data-off-text="Inativo" th:field="*{ativo}"/>   							
+  						</div>
+  					</div>
+					
+				</div>							
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>&nbsp;
+					<a href="" id="btnCancelar" class="btn  btn-default" onclick="limparCampos()">Cancelar</a>
+					&nbsp;<span th:text="|Tem erro no objeto usuário ${#fields.hasAnyErrors()}|"></span>
+				</div>
+								
+			</form>
+			
+		</div>		
+					
+	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/js/vendors/bootstrap-switch.min.js}"></script>
+		<script>
+			//$(".js-status").bootstrapSwitch('state',true);	
+			$(".js-status").bootstrapSwitch();
+			
+			$('#btnCancelar').on('click', function(event) {event.preventDefault()});
+			
+			function limparCampos() {				
+					$('.form-control').val('');
+					$('.form-group').removeClass('has-error');
+					$('#mensagens').addClass('hidden')
+					$('#id-nome').focus();
+				}
+			
+		</script>	
+	</th:block>
+	
+</body>
+
+</HTML>

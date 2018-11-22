@@ -1,0 +1,108 @@
+package com.rodrigogonzaga.biblioteca.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.rodrigogonzaga.biblioteca.controller.page.PageWrapper;
+import com.rodrigogonzaga.biblioteca.model.Livro;
+import com.rodrigogonzaga.biblioteca.repository.Autores;
+import com.rodrigogonzaga.biblioteca.repository.Livros;
+import com.rodrigogonzaga.biblioteca.repository.filter.LivroFilter;
+import com.rodrigogonzaga.biblioteca.service.CadastroLivroService;
+import com.rodrigogonzaga.biblioteca.service.exception.IsbnLivroJaCadastradoException;
+import com.rodrigogonzaga.biblioteca.service.exception.TituloLivroJaCadastradoException;
+
+@Controller
+@RequestMapping("/livros")
+public class LivrosController {
+	
+	@Autowired
+	private Livros livros;
+	
+	
+	@Autowired
+	private Autores autores; 
+	
+	@Autowired
+	private CadastroLivroService cadastroLivroService;
+	
+	
+	@RequestMapping(value = "/novo", method=RequestMethod.GET)	
+	public ModelAndView novo(Livro livro) {		 
+		ModelAndView mv = new ModelAndView("livro/CadastroLivro");
+		mv.addObject("autores", autores.findAll());		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/novo", method=RequestMethod.POST)
+	public ModelAndView cadastrar(@Valid Livro livro, BindingResult result, Model model, RedirectAttributes attributes) {
+		
+		if (result.hasErrors()) {
+			/*
+			 * Abaixo eu removo a atribuição do autor, se o usuário informou na tela, para qualquer erro de validação 
+			 * para que o preenchimento da tela não fique incompleto, sem o nome do autor.
+			 */
+			livro.setAutor(null);
+			return novo(livro);
+		}	
+		
+		//TODO Apagar depois 
+		/*System.out.println("livro.isbn: " + livro.getIsbn());
+		System.out.println("livro.titulo: " + livro.getTitulo());
+		System.out.println("livro.edição: " + livro.getEdicao());
+		System.out.println("livro.autor: " + livro.getAutor().getCodigo());*/
+				
+		try {
+		
+		cadastroLivroService.salvar(livro);
+		
+		}
+		catch(IsbnLivroJaCadastradoException ex) {
+			result.rejectValue("isbn", ex.getMessage(), ex.getMessage());
+			return novo(livro);
+		}
+		catch(TituloLivroJaCadastradoException ex) {
+			result.rejectValue("titulo", ex.getMessage(), ex.getMessage());
+			return novo(livro);
+		}		
+		
+		attributes.addFlashAttribute("mensagem", "Livro cadastrado com sucesso");
+		
+		return new ModelAndView("redirect:/livros/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar(LivroFilter livroFilter, BindingResult result, @PageableDefault(size=3) Pageable page, 
+			HttpServletRequest httpServletRequest) {
+		ModelAndView mv = new ModelAndView("livro/PesquisaLivros");
+		
+		PageWrapper<Livro> pageWrapper = new PageWrapper<>(livros.filtrar(livroFilter, page), httpServletRequest);
+		mv.addObject("pagina", pageWrapper);
+		
+		return mv; 
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/livros/cadastro")
+	public String cadastroProduto() {
+		return "livro/cadastro-produto";
+		
+	}
+
+}

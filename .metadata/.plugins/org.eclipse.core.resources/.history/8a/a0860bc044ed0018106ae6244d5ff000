@@ -1,0 +1,5 @@
+package com.rodrigogonzaga.biblioteca.service.exception;
+
+public class TituloLivroJaCadastradoException extends Exception {
+
+}

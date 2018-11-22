@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      	layout:decorate="~{layout/LayoutPadrao}"
+      	xmlns:biblioteca="http://biblioteca.rodrigogonzaga.com">
+      	
+<head><title>Pesquisa de Livros</title></head>
+	
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-10">
+						<h1>Pesquisa de Livros</h1>	
+					</div>
+										
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn  btn-default" th:href="@{/livros/novo}">
+								<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Livro</span>
+							</a>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<form method="GET" th:object="${livroFilter}"  class="form-vertical">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">							
+							<label for="id-isbn" class="control-label">ISBN </label>
+							<input type="text" id="id-isbn" class="form-control" th:field="*{isbn}"  placeholder="Ex.: 978-85-204-3997-5" autofocus="autofocus">
+						</div>						
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label for="id-titulo" class="control-label">Título </label>
+							<input type="text" id="id-titulo" class="form-control" th:field="*{titulo}" placeholder="">								
+						</div>						
+					</div>
+				</div>
+				<div class="row">					
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="id-editora" class="control-label">Editora</label>
+							<input type="text" id="id-editora" class="form-control" th:field="*{editora}" placeholder="">								
+						</div>						
+					</div>
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="id-nomeAutor" class="control-label">Autor</label>
+							<input type="text" id="id-nomeAutor" class="form-control" th:field="*{nomeAutor}" disabled="disabled" placeholder="Desabilitado por enquanto">								
+						</div>						
+					</div>
+				</div>	
+				<div class="form-group">
+					<button type="submit" class="btn  btn-primary">Pesquisar</button>&nbsp;
+					<a id="btnCancelar" href="" class="btn  btn-default" onclick="limparCampos()">Cancelar</a>
+				</div>			
+				
+			</form>
+			
+			<div class="table-responsive biblio-tabela-simples"> 
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class=""><span>ISBN</span></th>
+							<th class="biblio-autores-col-nome">
+								<th:block th:replace="fragments/OrdenacaoTabela :: order (${pagina},'titulo','Título')">
+							</th>
+							<th class=""><span>Editora</span></th>
+							<th class="">
+								<span>Autor</span>
+								<!-- <th:block th:replace="fragments/OrdenacaoTabela :: order (${pagina},'autor.nome','Autor')"> -->
+							</th>
+							<th class="biblio-autores-col-acoes"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="livro: ${pagina.conteudo}">
+							<tr>
+								<td th:text="${livro.isbn}"></td>
+								<td th:text="${livro.titulo}"></td>
+								<td th:text="${livro.editora}"></td>
+								<td th:text="${livro.autor.nome}"></td>
+								<td class="text-center">
+									<a class="btn  btn-link  btn-xs" title="Editar"> 
+										<i class="glyphicon glyphicon-pencil"></i>
+									</a>
+									<a class="btn  btn-link  btn-xs" title="Excluir">
+										<i class="glyphicon glyphicon-remove"></i>
+									</a>
+								</td>						
+							</tr>					
+						</th:block>						
+						<tr th:if="${pagina.vazia}"> 
+							<td colspan="7" class="text-center">Nenhum livro encontrado</td>
+						</tr>			
+					</tbody>
+				</table>
+			</div>
+			<div class="col-sm-12 text-center" th:if="${not pagina.vazia}">
+				<ul class="pagination pagination-sm" th:with="paginaAtual=${pagina.atual}">
+					<li th:class="${pagina.primeira} ? disabled">
+				      	<a th:href="${pagina.urlParaPagina(paginaAtual - 1)}" th:remove="${pagina.primeira} ? tag" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>				      	
+				    </li>
+				    
+				    <th:block th:each="p: ${#numbers.sequence(1, pagina.total)}" th:with="numeroPagina=${p-1}">				    
+					    <li th:class="${paginaAtual==numeroPagina} ? active">
+					    	<!-- <a th:href="|?page=${numeroPagina}|" th:text="${p}"></a> -->
+					    	<a th:href="${pagina.urlParaPagina(numeroPagina)}" th:text="${p}"></a>
+					    </li>
+				    </th:block>	   
+				    
+				    <li th:class="${pagina.ultima} ? disabled">
+				      	<a th:href="${pagina.urlParaPagina(paginaAtual + 1)}" th:remove="${pagina.ultima} ? tag" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+				    </li>
+				</ul>			
+			</div>
+		</div>
+	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script>
+		
+		$('#btnCancelar').on('click', function(event) {event.preventDefault()});
+		
+		function limparCampos() {
+				$('.form-control').val('');
+				$('#id-isbn').focus();
+			}
+		
+		</script>
+			
+	</th:block>
+	
+	
+</body>
+</html>

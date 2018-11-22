@@ -1,0 +1,37 @@
+package com.rodrigogonzaga.biblioteca.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+@Configuration
+public class JPAConfig {
+
+	@Bean
+	public DataSource dataSource() {
+		JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup(); 
+		dataSourceLookup.setResourceRef(true);
+				
+		return dataSourceLookup.getDataSource("jdbc/bibliotecaDB");
+		
+	}
+	
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter() {
+		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter(); 
+		adapter.setDatabase(Database.POSTGRESQL);
+		adapter.setShowSql(false);
+		adapter.setGenerateDdl(false);
+		adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
+		return adapter;		
+	}
+	
+	
+	
+	
+}

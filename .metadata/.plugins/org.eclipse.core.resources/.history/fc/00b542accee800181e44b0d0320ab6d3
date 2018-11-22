@@ -1,0 +1,28 @@
+package com.rodrigogonzaga.biblioteca.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+
+import com.rodrigogonzaga.biblioteca.controller.LivrosController;
+
+@Configuration
+@ComponentScan(basePackageClasses = {LivrosController.class})
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+	private ITemplateResolver templateResolver() {
+		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+		resolver.setApplicationContext(applicationContext);
+		resolver.setPrefix("classpath:/templates/");
+		resolver.setSuffix(".html");
+		resolver.setTemplateMode(TemplateMode.HTML);
+		return resolver;
+	}
+	
+	
+}
