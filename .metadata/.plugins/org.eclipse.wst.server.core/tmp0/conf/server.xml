@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\Rodrigo\eclipse-workspace\multiportal\biblioteca\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Rodrigo\eclipse-workspace\multiportal\biblioteca\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\biblioteca" path="/biblioteca" reloadable="true" source="org.eclipse.jst.jee.server:biblioteca">
+      <Context docBase="C:\Users\Rodrigo\git\projeto-teste-biblioteca\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Rodrigo\git\projeto-teste-biblioteca\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\biblioteca" path="/biblioteca" reloadable="true" source="org.eclipse.jst.jee.server:biblioteca">
 
 	<Resource auth="Container" driverClassName="org.postgresql.Driver" maxIdle="5" maxTotal="10" maxWaitMillis="-1" name="jdbc/bibliotecaDB" password="root" type="javax.sql.DataSource" url="jdbc:postgresql://localhost/biblioteca" username="root"/>
 </Context></Host>
