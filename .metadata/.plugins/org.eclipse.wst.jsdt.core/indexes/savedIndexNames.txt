@@ -1,20 +1,6 @@
-INDEX VERSION 1.4+C:\Users\Rodrigo\eclipse-workspace\multiportal\biblioteca\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-170089318.index
-903811921.index
-1442018742.index
-2413378150.index
-47974066.index
-2405629604.index
-1215228780.index
-873321155.index
-1909333922.index
-333883638.index
-3336887738.index
-392714235.index
-1237068542.index
-2037482641.index
-1309469870.index
-949401827.index
-4013232005.index
-1957218654.index
+INDEX VERSION 1.4+C:\Users\Rodrigo\git\projeto-teste-biblioteca\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3928585673.index
+3848842206.index
 143947086.index
+3937896241.index
+3709581240.index
