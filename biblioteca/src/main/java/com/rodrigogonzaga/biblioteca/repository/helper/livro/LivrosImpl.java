@@ -67,10 +67,11 @@ public class LivrosImpl implements LivrosQueries {
 				criteria.add(Restrictions.ilike("editora", filtro.getEditora(), MatchMode.ANYWHERE)); 				
 			}
 						
-			/*if (!StringUtils.isEmpty(filtro.getNomeAutor())) {				
-				//TODO: descobrir porque não funciona 
-				//criteria.add(Restrictions.ilike("autor.nome", filtro.getNomeAutor(), MatchMode.ANYWHERE)); 				
-			}*/
+			if (!StringUtils.isEmpty(filtro.getNomeAutor())) {				
+				//JOIN with autor association and creates alias 'autor_livro' for it 
+				criteria.createAlias("autor", "autor_livro");
+				criteria.add(Restrictions.ilike("autor_livro.nome", filtro.getNomeAutor(), MatchMode.ANYWHERE)); 				
+			}
 		}
 	}
 	

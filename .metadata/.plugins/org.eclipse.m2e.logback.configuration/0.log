@@ -3982,3 +3982,31 @@
 2018-11-23 23:57:42,396 [Worker-22: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of biblioteca
 2018-11-23 23:57:42,396 [Worker-22: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for biblioteca
 2018-11-23 23:57:42,403 [Worker-22: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 11:06:48,039 [Worker-559: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 11:06:49,622 [Worker-559: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 54 resources
+2018-11-30 11:06:49,683 [Worker-559: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 11:06:49,704 [Worker-559: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
+2018-11-30 11:44:41,419 [Worker-579: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 11:44:41,509 [Worker-579: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-11-30 11:44:41,554 [Worker-579: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 11:44:41,554 [Worker-579: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
+2018-11-30 12:47:39,540 [Worker-588: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 12:47:39,640 [Worker-588: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 54 resources
+2018-11-30 12:47:39,721 [Worker-588: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 12:47:39,721 [Worker-588: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
+2018-11-30 13:02:11,570 [Worker-594: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:02:11,636 [Worker-594: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 54 resources
+2018-11-30 13:02:11,688 [Worker-594: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:02:11,688 [Worker-594: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
+2018-11-30 13:19:03,401 [Worker-601: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:19:03,476 [Worker-601: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 54 resources
+2018-11-30 13:19:03,560 [Worker-601: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:19:03,561 [Worker-601: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
+2018-11-30 13:29:06,458 [Worker-605: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:29:06,553 [Worker-605: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 54 resources
+2018-11-30 13:29:06,623 [Worker-605: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:29:06,624 [Worker-605: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
+2018-11-30 13:38:02,980 [Worker-607: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:38:03,045 [Worker-607: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 54 resources
+2018-11-30 13:38:03,094 [Worker-607: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-30 13:38:03,094 [Worker-607: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Rodrigo\git\projeto-teste-biblioteca\biblioteca\src\test\resources
